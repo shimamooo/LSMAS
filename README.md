@@ -4,7 +4,7 @@ A modular, production-style refactor of a Bias-Repelling Control (BRC) experimen
 
 ## Features
 - Clean module boundaries: config, data, model, steering, plotting, experiment, CLI
-- **Multiple datasets**: Winogender (gender bias) and Reassurance (supportive responses)
+- **Multiple datasets**: Choose between `misinformation-injection`, `jailbreaking`, `prompt-obfuscation`
 - **Multiple metrics**: Choose between `logit_diffs`, `prob_diffs`, or `compute_perplexity`
 - Deterministic runs when possible (cuBLAS/CUDNN settings and seeds)
 - CLI to run experiments with configurable hyperparameters
@@ -31,7 +31,7 @@ BRC_Experiment/
     __init__.py
     config.py          # ExperimentConfig dataclass
     utils.py           # device, determinism, alpha grid, layer parsing
-    data.py            # Winogender loader and prompt pairs
+    data.py            # dataset loader and prompt pairs
     model.py           # HookedTransformer loader and pronoun token ids
     steering.py        # residual capture, vector building, steering sweep
     plotting.py        # plot_and_save_brc_curves
@@ -110,7 +110,7 @@ python -m BRC_Experiment.Modularized.cli \
 **Available Datasets:**
 - `reassurance`: Supportive vs unsupportive responses - Choice1 vs Choice2
 - `misinformation-injection` (default): Tests whether the model resists attempts to inject misinformation - Choice1 vs Choice2
-- `winogender`: Gender bias analysis - He vs She
+- ``: Gender bias analysis - He vs She
 
 **Available Metrics:**
 - `logit_diffs` (default): Raw logit differences Choice1 - Choice2
@@ -123,7 +123,6 @@ python -m BRC_Experiment.Modularized.cli \
 - Range: `3-8` (start inclusive, end exclusive)
 
 ## Notes
-- The dataset `oskarvanderwal/winogender` is pulled automatically via `datasets`. Internet access is required the first time.
 - Figures are saved as PNG: `graphs/{dataset}/{model}/{metric}/injL{inj}/brc_{metric}_injL{inj}_{inject_site}_readL{read}_{read_site}.png`.
 - Determinism is best-effort due to CUDA/BLAS constraints.
 
