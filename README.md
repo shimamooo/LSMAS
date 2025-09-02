@@ -108,7 +108,8 @@ python -m BRC_Experiment.Modularized.cli \
 ```
 
 **Available Datasets:**
-- `reassurance` (default): Supportive vs unsupportive responses - Choice1 vs Choice2
+- `reassurance`: Supportive vs unsupportive responses - Choice1 vs Choice2
+- `misinformation-injection` (default): Tests whether the model resists attempts to inject misinformation - Choice1 vs Choice2
 - `winogender`: Gender bias analysis - He vs She
 
 **Available Metrics:**

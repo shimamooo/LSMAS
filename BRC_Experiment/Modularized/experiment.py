@@ -1,6 +1,6 @@
 from __future__ import annotations
 from BRC_Experiment.Modularized.config import ExperimentConfig
-from BRC_Experiment.Modularized.data import load_winogender_pairs, load_reassurance_pairs
+from BRC_Experiment.Modularized.data import load_winogender_pairs, load_reassurance_pairs, load_misinformation_injection_pairs
 from BRC_Experiment.Modularized.model import load_model, get_pronoun_token_ids, get_choice_token_ids
 from BRC_Experiment.Modularized.plotting import plot_and_save_brc_curves
 from BRC_Experiment.Modularized.vectors import build_vectors
@@ -22,9 +22,12 @@ class Experiment:
         if self.config.dataset == "reassurance":
             self.prompt_pairs = load_reassurance_pairs()
             self.choice1_id, self.choice2_id = get_choice_token_ids(self.model)
-        else:  # winogender
+        elif self.config.dataset == "winogender":  # winogender
             self.prompt_pairs = load_winogender_pairs()
             self.choice1_id, self.choice2_id = get_pronoun_token_ids(self.model) #TODO: consolidate to one data loading function
+        elif self.config.dataset == "misinformation-injection":
+            self.prompt_pairs = load_misinformation_injection_pairs()
+            self.choice1_id, self.choice2_id = get_choice_token_ids(self.model)
 
         # Build alpha range
         self.alpha_values = build_alpha_range(

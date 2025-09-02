@@ -34,8 +34,8 @@ class ExperimentConfig:
     # Whether to use log scale on both axes (useful for exponential growth)
     log_scale_both: bool = False
     
-    # Dataset to use: "winogender" or "reassurance"
-    dataset: str = "reassurance"
+    # Dataset to use: "winogender" or "reassurance" or "misinformation-injection"
+    dataset: str = "misinformation-injection"
     
     # Whether to show progress bars during execution
     show_progress: bool = True

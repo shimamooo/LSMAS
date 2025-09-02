@@ -23,6 +23,28 @@ def load_winogender_pairs(dataset_name: str = "oskarvanderwal/winogender", subse
             prompt_pairs.append((female_df.loc[occupation, "sentence"], male_df.loc[occupation, "sentence"]))
     return prompt_pairs
 
+def load_misinformation_injection_pairs(data_path: str = "data/misinformation-injection.json") -> List[Tuple[str, str]]:
+    """Load misinformation injection dataset and return list of (supportive_prompt, unsupportive_prompt) pairs.
+    
+    Each pair contains the question + choices + different answer selections:
+    - supportive_prompt: question + choices + "\n\nI choose (1"  
+    - unsupportive_prompt: question + choices + "\n\nI choose (2"
+    
+    This creates minimal pairs where the model predicts the choice number after
+    "I choose (" which provides clearer choice differentiation and stronger signals.
+    """
+    with open(data_path, 'r') as f:
+        data = json.load(f)
+    
+    prompt_pairs: List[Tuple[str, str]] = []
+    for item in data:
+        question_with_choices = item["question"]
+        supportive_prompt = f"{question_with_choices}\n\nI choose (1"
+        unsupportive_prompt = f"{question_with_choices}\n\nI choose (2"
+        prompt_pairs.append((supportive_prompt, unsupportive_prompt))
+    
+    return prompt_pairs
+
 
 def load_reassurance_pairs(data_path: str = "data/reassurance.json") -> List[Tuple[str, str]]:
     """Load reassurance dataset and return list of (supportive_prompt, unsupportive_prompt) pairs.

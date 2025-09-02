@@ -16,7 +16,7 @@ def plot_and_save_brc_curves(
     y_limits: tuple[float, float],
     metric_name: str = "logit_diffs",
     use_log_scale: bool = False,
-    dataset_name: str = "reassurance",
+    dataset_name: str = "misinformation-injection",
     model_name: str = "gpt2",
     log_scale_both: bool = False,  # Add parameter for log scale on both axes
 ) -> None:
@@ -212,7 +212,7 @@ def plot_rank_changes_and_save(
     read_site: str,
     out_dir: str,
     y_limits: tuple[float, float],
-    dataset_name: str = "reassurance",
+    dataset_name: str = "misinformation-injection",
     model_name: str = "gpt2",
 ) -> None:
     """
@@ -285,7 +285,7 @@ def plot_kl_divergences_and_save(
     read_site: str,
     out_dir: str,
     y_limits: tuple[float, float],
-    dataset_name: str = "reassurance",
+    dataset_name: str = "misinformation-injection",
     model_name: str = "gpt2",
 ) -> None:
     """

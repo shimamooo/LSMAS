@@ -37,7 +37,7 @@ def run_quickstart() -> None:
         metric=None,  # Run all metrics to test batch functionality
         steer_all_tokens=True,
         use_log_scale=False,
-        dataset="reassurance",  # Test our fixed reassurance dataset
+        dataset="misinformation-injection",  # Test our fixed misinformation injection dataset
         show_progress=True,  # Enable progress tracking
     )
     Experiment(cfg).run_experiment()

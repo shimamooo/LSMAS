@@ -33,8 +33,9 @@ def build_parser() -> argparse.ArgumentParser:
                    help="Steer only the last token position instead of all tokens (default: steer all tokens)")
     p.add_argument("--use-log-scale", action="store_true", 
                    help="Force log scale for plotting (automatically enabled for prob_diffs metric)")
-    p.add_argument("--dataset", type=str, default="reassurance", 
-                   choices=["winogender", "reassurance"],
+    p.add_argument("--dataset", type=str, default="misinformation-injection", 
+                   choices=["winogender", "reassurance",
+                   "misinformation-injection"],
                    help="Dataset to use: winogender (he/she bias) or reassurance (supportive/unsupportive responses)")
     p.add_argument("--no-progress", action="store_true", 
                    help="Disable progress bars for silent execution")
